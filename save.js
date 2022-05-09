@@ -1,8 +1,6 @@
 function save() {
     var save = {
-        milk: milk,
-        cursors: cursors,
-        prestige: prestige,
+        food: food,
     };
 
     localStorage.setItem("save", JSON.stringify(save));
