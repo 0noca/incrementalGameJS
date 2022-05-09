@@ -8,18 +8,25 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <button onClick="milkClick(1)">Button</button>
-    Milk: <span id="milk"></span>
-    <br>
-    
-    <button onClick="buyCursor()">Cursor</button>
-    Cursors: <span id="cursors">0</span>
-    Cost: <span id="cursorCost">10</span>
-    <br>
+    <div>
+        <button id="milkButton" onClick="milkClick(1)">Click me!</button>
+        Milk: <span id="milk"></span>
+        <br>
+    </div>
+ 
+    <div>   
+        <button onClick="buyCursor()">Add Cursors</button>
+        Cursors: <span id="cursors">0</span>
+        Cost: <span id="cursorCost">10</span> Milk
+        <br>
+    </div>
 
-    <button onClick="buyPrestige()">Prestige</button>    
-    Prestiges: <span id="prestiges">0</span>
-    Cost: <span id="prestigeCost">100</span>
+    <div> 
+        <button onClick="buyPrestige()">Prestige</button>    
+        Prestiges: <span id="prestiges">0</span>
+        Cost: <span id="prestigeCost">50</span> Cursors
+        <br>
+    </div>
 </body>
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript" src="save.js"></script>

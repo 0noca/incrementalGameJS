@@ -9,7 +9,7 @@ function milkClick(number){
 
 function prestigeCounter(number){
     cursors = cursors + number;
-    document.getElementById("cursors").innerHTML = cursors;
+    document.getElementById("cursors").innerHTML = prettify(cursors);
 };
 
 function prettify(input) {
@@ -18,12 +18,12 @@ function prettify(input) {
 }
 
 function buyCursor() {
-    var cursorCost = Math.floor(10 * Math.pow(1.01, cursors));
+    var cursorCost = Math.floor(10 * Math.pow(1.1, cursors));
 
     if (milk >= cursorCost) {
-        cursors = cursors + 1; // Increment cursors counter by 1
-        milk = milk - cursorCost; // Decrements milks value by cursorCost
-        document.getElementById("cursors").innerHTML = cursors; // Sets cursors element value as current cursors value
+        cursors = cursors + 1;
+        milk = milk - cursorCost;
+        document.getElementById("cursors").innerHTML = prettify(cursors); // Sets cursors element value as current cursors value
         document.getElementById("milk").innerHTML = prettify(milk); // Sets milks element value as current milks value    
     };
 
@@ -31,24 +31,24 @@ function buyCursor() {
     document.getElementById("cursorCost").innerHTML = nextCost;    
 };
 
-function buyPrestige() { // BuyPrestige Button function
-    var prestigeCost = Math.floor(100 * Math.pow(1.1, prestige));
+function buyPrestige() {
+    var prestigeCost = Math.floor(50 * Math.pow(1.2, prestige));
 
-    if (milk >= prestigeCost) {
-        prestige = prestige + 1;
-        milk = milk - prestigeCost;
-        document.getElementById("prestiges").innerHTML = prestige; 
+    if (cursors >= prestigeCost) {
+        prestige = prestige + 0.1;
+        cursors = cursors - prestigeCost;
+        document.getElementById("prestiges").innerHTML = prettify(prestige); 
         document.getElementById("milk").innerHTML = prettify(milk);  
     };
 
-    var nextCostPrestige = Math.floor(100 * Math.pow(1.1, prestige));
-    document.getElementById("prestigeCost").innerHTML = nextCostPrestige;    
+    var nextCostPrestige = Math.floor(50 * Math.pow(1.2, prestige));
+    document.getElementById("prestigeCost").innerHTML = nextCostPrestige;
 };
 
 window.setInterval(function() {
     milkClick(cursors);
-},100);
+},250);
 
 window.setInterval(function() {
     prestigeCounter(prestige);
-},1000);
+},2000);

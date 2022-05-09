@@ -1,0 +1,22 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.3em;
+}
+
+button {
+    border: 2px solid black;
+    font-size: 17px;
+    padding: 10px 24px;
+    border-radius: 12px;
+    background-color: white;
+    transition-duration: 0.4s;
+    width: 10%;
+    margin-bottom: 5px;
+}
+button:hover {
+    background-color: #7c7c7c;
+    color: white;
+}

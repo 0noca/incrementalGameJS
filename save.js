@@ -13,6 +13,8 @@ function load() {
     if (typeof savegame.milk !== "undefined") milk = savegame.milk;
     if (typeof savegame.cursors !== "undefined") cursors = savegame.cursors;
     if (typeof savegame.prestige !== "undefined") prestige = savegame.prestige;
+    if (typeof savegame.milkSpeed !== "undefined") milkSpeed = savegame.milkSpeed;
+    if (typeof savegame.milkSpeedCounter !== "undefined") milkSpeedCounter = savegame.milkSpeedCounter;
 };
 
 window.onLoad = load();
@@ -26,4 +28,4 @@ function deleteGameData() {
 window.setInterval(function() {
     save();
     console.log("Game has been saved successfully")
-},100000);
+},500);
