@@ -3,11 +3,9 @@ var food = {
     increment:1,
     specialChance:0.1,
 }
-
 var skins = {
     total: 0,
 }
-
 var tent = {
     total:0,
     maxPopulation:1,
@@ -16,19 +14,23 @@ var tent = {
         skins:2,
     }
 }
-
 var population = {
     farmers:0,
     woodcutters:0,
     miners:0,    
 }
-
 var worker = {
     total:0,
     require: {
         food: 20,
     }
-}
+};
+
+var maxPopulationAmount = 1
+
+function populationCalculator(){
+    maxPopulationAmount = maxPopulationAmount + (tent.total * tent.maxPopulation)
+};
 /*
 var wood = 0;
 var stone = 0;
@@ -44,6 +46,7 @@ var metal = 0;
 function load() {
     document.getElementById("tent").innerHTML = prettify(tent.total);
     document.getElementById("food").innerHTML = prettify(food.total);     
+    document.getElementById("workers").innerHTML = prettify(worker.total);
 };
 
 window.onLoad = load();
@@ -57,13 +60,13 @@ function prettify(input) {
         return output;
 }
 
-function earnFood(){
-    if(probability(food.specialChance)) {
-        skins.total = skins.total + 1
-        console.log("You got a skin")
-    } else
-        food.total = food.total + food.increment;
-        document.getElementById("food").innerHTML = prettify(food.total);
+function earnFood(){ // Loon funktsiooni, mida saab kutsuda tulevikus
+    if(probability(food.specialChance)) { // Kui tõenaosus on 0.1, siis teeb midagi
+        skins.total = skins.total + 1 // Teenid ühe naha, kui see juhtub
+        console.log("You got a skin") // Kirjutab konsooli, et said naha
+    } else // Kui tõenaosus ei ole veel 0.1, siis teeb hoopis seda
+        food.total = food.total + food.increment; // Lisab toidule 1 toidu
+        document.getElementById("food").innerHTML = prettify(food.total); // Kirjutab ekraanile toidu summa
 };
 
 function craftTent(){
@@ -71,6 +74,7 @@ function craftTent(){
         tent.total = tent.total + 1
         skins.total = skins.total - tent.require.skins
         food.total = food.total - tent.require.food
+        populationCalculator()
 
         console.log("Crafted a tent")
         document.getElementById("tent").innerHTML = prettify(tent.total);
@@ -80,7 +84,16 @@ function craftTent(){
 };
 
 function createWorker(){
-
+    if (maxPopulationAmount > worker.total){
+        if (food.total >= worker.require.food) {
+            worker.total = worker.total + 1;
+            food.total = food.total - 20;
+            document.getElementById("food").innerHTML = prettify(food.total);
+            document.getElementById("workers").innerHTML = prettify(worker.total);
+        } else
+        console.log("You don't have enough food! Go gather some more");
+    } else 
+    console.log("You don't have enough room to house these people");    
 };
 /*
 function earnWood(number){

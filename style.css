@@ -1,9 +1,7 @@
 body {
     font-family: 'Raleway', sans-serif;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     font-size: 25px;
+    background-color:aliceblue;
 }
 
 button {
