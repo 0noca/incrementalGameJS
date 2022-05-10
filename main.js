@@ -26,11 +26,7 @@ var worker = {
     }
 };
 
-var maxPopulationAmount = 1
-
-function populationCalculator(){
-    maxPopulationAmount = maxPopulationAmount + (tent.total * tent.maxPopulation)
-};
+var maxPopulationAmount
 /*
 var wood = 0;
 var stone = 0;
@@ -74,26 +70,25 @@ function craftTent(){
         tent.total = tent.total + 1
         skins.total = skins.total - tent.require.skins
         food.total = food.total - tent.require.food
-        populationCalculator()
 
         console.log("Crafted a tent")
         document.getElementById("tent").innerHTML = prettify(tent.total);
         document.getElementById("food").innerHTML = prettify(food.total);
+        maxPopulationAmount = 1 + (tent.total * tent.maxPopulation)
+        return maxPopulationAmount
     } else
         console.log("You don't have enough materials to craft a tent");
 };
 
 function createWorker(){
-    if (maxPopulationAmount > worker.total){
-        if (food.total >= worker.require.food) {
-            worker.total = worker.total + 1;
-            food.total = food.total - 20;
-            document.getElementById("food").innerHTML = prettify(food.total);
-            document.getElementById("workers").innerHTML = prettify(worker.total);
-        } else
-        console.log("You don't have enough food! Go gather some more");
-    } else 
-    console.log("You don't have enough room to house these people");    
+        if (maxPopulationAmount > worker.total){
+            if (food.total >= worker.require.food) {
+                worker.total = worker.total + 1;
+                food.total = food.total - 20;
+                document.getElementById("food").innerHTML = prettify(food.total);
+                document.getElementById("workers").innerHTML = prettify(worker.total);
+            } else console.log("You don't have enough food! Go gather some more");
+        } else console.log("You don't have enough room to house these people");    
 };
 /*
 function earnWood(number){
