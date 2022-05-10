@@ -8,6 +8,14 @@ var skins = {
     total: 0,
 }
 
+var tent = {
+    total:0,
+    require: {
+        food:2,
+        skins:2,
+    }
+}
+
 /*
 var wood = 0;
 var stone = 0;
@@ -20,13 +28,12 @@ var piety = 0;
 var metal = 0;
 */
 
-var tent = {
-    total:0,
-    require: {
-        wood:2,
-        skins:2,
-    }
-}
+function load() {
+    document.getElementById("tent").innerHTML = prettify(tent.total);
+    document.getElementById("food").innerHTML = prettify(food.total);     
+};
+
+window.onLoad = load();
 
 function probability(n) {
     return Math.random() < n;
@@ -46,7 +53,17 @@ function earnFood(){
         document.getElementById("food").innerHTML = prettify(food.total);
 };
 
-function createBUilding
+function craftTent(){
+    if (food.total && skins.total >= tent.require.food && tent.require.skins){
+        tent.total = tent.total + 1
+        skins.total = skins.total - tent.require.skins
+        food.total = food.total - tent.require.food
+        console.log("Crafted a tent")
+        document.getElementById("tent").innerHTML = prettify(tent.total);
+        document.getElementById("food").innerHTML = prettify(food.total);
+    } else
+        console.log("You don't have enough materials to craft a tent");
+};
 
 /*
 function earnWood(number){
@@ -57,4 +74,4 @@ function earnWood(number){
 function earnStone(number){
     stone = stone + number;
     document.getElementById("stone").innerHTML = prettify(stone);
-};*/
+}; */
