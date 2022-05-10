@@ -10,12 +10,25 @@ var skins = {
 
 var tent = {
     total:0,
+    maxPopulation:1,
     require: {
         food:2,
         skins:2,
     }
 }
 
+var population = {
+    farmers:0,
+    woodcutters:0,
+    miners:0,    
+}
+
+var worker = {
+    total:0,
+    require: {
+        food: 20,
+    }
+}
 /*
 var wood = 0;
 var stone = 0;
@@ -58,6 +71,7 @@ function craftTent(){
         tent.total = tent.total + 1
         skins.total = skins.total - tent.require.skins
         food.total = food.total - tent.require.food
+
         console.log("Crafted a tent")
         document.getElementById("tent").innerHTML = prettify(tent.total);
         document.getElementById("food").innerHTML = prettify(food.total);
@@ -65,6 +79,9 @@ function craftTent(){
         console.log("You don't have enough materials to craft a tent");
 };
 
+function createWorker(){
+
+};
 /*
 function earnWood(number){
     wood = wood + number;
