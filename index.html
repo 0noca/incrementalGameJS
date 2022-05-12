@@ -13,6 +13,10 @@
         Food: <span id="food"></span>
         <br>
     </div> 
+    <div>
+        Skins: <span id="skins"></span>
+        <br>
+    </div>
  
     <div>
         <button onClick="craftTent()">Craft a tent</button>
@@ -24,7 +28,25 @@
         <button onClick="createWorker()">Create a worker</button>
         Workers: <span id="workers"></span>
         <br>
-    </div>         
+    </div>
+
+    <div id="farmers-buttons">
+        <div id="farmers-add-button">   
+            <button onClick="addFarmer()">+</button>
+            <br>
+        </div>
+
+        <div id="farmers-middle-button">   
+            <button>Farmers:</button>
+            <<span id="farmers"></span>>
+            <br>
+        </div> 
+
+        <div id="farmers-remove-button">   
+            <button onClick="removeFarmer()">-</button>
+            <br>
+        </div>
+    </div>     
 </body>
 <script type="text/javascript" src="main.js"></script>
 <!-- <script type="text/javascript" src="save.js"></script> -->
