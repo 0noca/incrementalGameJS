@@ -11,10 +11,15 @@ button {
     border-radius: 6px;
     background-color: white;
     transition-duration: 0.4s;
-    width: 15%;
     margin-bottom: 5px;
 }
 button:hover {
     background-color: #7c7c7c;
     color: white;
+}
+
+
+#farmers-buttons {
+    display: flex;
+    flex-direction: row;
 }
