@@ -43,6 +43,8 @@ function load() {
     document.getElementById("tent").innerHTML = prettify(tent.total);
     document.getElementById("food").innerHTML = prettify(food.total);     
     document.getElementById("workers").innerHTML = prettify(worker.total);
+    document.getElementById("farmers").innerHTML = prettify(population.farmers);
+    document.getElementById("skins").innerHTML = prettify(skins.total);
 };
 
 window.onLoad = load();
@@ -56,40 +58,82 @@ function prettify(input) {
         return output;
 }
 
-function earnFood(){ // Loon funktsiooni, mida saab kutsuda tulevikus
-    if(probability(food.specialChance)) { // Kui tõenaosus on 0.1, siis teeb midagi
-        skins.total = skins.total + 1 // Teenid ühe naha, kui see juhtub
-        console.log("You got a skin") // Kirjutab konsooli, et said naha
-    } else // Kui tõenaosus ei ole veel 0.1, siis teeb hoopis seda
-        food.total = food.total + food.increment; // Lisab toidule 1 toidu
+function earnFood(){ 
+    if(probability(food.specialChance)) { 
+        skins.total = skins.total + 1 
+        document.getElementById("skins").innerHTML = prettify(skins.total);
+    } else 
+        food.total = food.total + food.increment;
         document.getElementById("food").innerHTML = prettify(food.total); // Kirjutab ekraanile toidu summa
 };
 
-function craftTent(){
-    if (food.total && skins.total >= tent.require.food && tent.require.skins){
-        tent.total = tent.total + 1
-        skins.total = skins.total - tent.require.skins
-        food.total = food.total - tent.require.food
+function craftTent(){   
+        if (food.total && skins.total >= tent.require.food && tent.require.skins){
+            tent.total = tent.total + 1
+            skins.total = skins.total - tent.require.skins
+            food.total = food.total - tent.require.food
 
-        console.log("Crafted a tent")
-        document.getElementById("tent").innerHTML = prettify(tent.total);
-        document.getElementById("food").innerHTML = prettify(food.total);
-        maxPopulationAmount = 1 + (tent.total * tent.maxPopulation)
-        return maxPopulationAmount
-    } else
-        console.log("You don't have enough materials to craft a tent");
+            console.log("Crafted a tent")
+            document.getElementById("tent").innerHTML = prettify(tent.total);
+            document.getElementById("food").innerHTML = prettify(food.total);
+            document.getElementById("skins").innerHTML = prettify(skins.total);
+            maxPopulationAmount = 1 + (tent.total * tent.maxPopulation)
+            return maxPopulationAmount
+        } else
+            console.log("You don't have enough materials to craft a tent");
 };
 
 function createWorker(){
-        if (maxPopulationAmount > worker.total){
+    var totalWorker = worker.total + population.farmers
+        if (maxPopulationAmount > totalWorker){
             if (food.total >= worker.require.food) {
                 worker.total = worker.total + 1;
                 food.total = food.total - 20;
                 document.getElementById("food").innerHTML = prettify(food.total);
                 document.getElementById("workers").innerHTML = prettify(worker.total);
+                document.getElementById("skins").innerHTML = prettify(skins.total);
             } else console.log("You don't have enough food! Go gather some more");
         } else console.log("You don't have enough room to house these people");    
 };
+
+function addFarmer(){
+    if( worker.total >= 1 ){
+        population.farmers = population.farmers + 1;
+        worker.total = worker.total - 1;
+        document.getElementById("farmers").innerHTML = prettify(population.farmers);
+        document.getElementById("workers").innerHTML = prettify(worker.total)
+    } else console.log("You don't have enough workers to assign a farmer");
+};
+
+function removeFarmer(){
+    if( worker.total >= 1 ){
+        population.farmers = population.farmers - 1;
+        worker.total = worker.total + 1;
+        document.getElementById("farmers").innerHTML = prettify(population.farmers);
+        document.getElementById("workers").innerHTML = prettify(worker.total);
+    } else console.log("You can't remove a farmer if you don't have any");
+};
+
+function doFarmer (){
+    var specialChance = food.specialChance + (0.05 * population.farmers);
+
+    if (population.farmers >= 1) {
+        food.total = food.total + (0.1 * population.farmers)
+        document.getElementById("food").innerHTML = prettify(food.total);
+    };
+
+    if(probability(specialChance)) {
+        skins.total = skins.total + 1
+        document.getElementById("skins").innerHTML = prettify(skins.total);
+    };
+};
+
+window.setInterval(function() {
+    if(population.farmers >=1) {
+        doFarmer()
+    };
+},1000);
+
 /*
 function earnWood(number){
     wood = wood + number;
