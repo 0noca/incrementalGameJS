@@ -6,48 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <!-- Insert JavaScript -->
+
+    <script src="js/main.js"></script>
+    <script src="js/save.js"></script>
 </head>
 <body>
     <div>
-        <button onClick="earnFood()">Gather Food</button> <!-- Kutsub esile funktsiooni earnFood iga nupu vajutusega-->
-        Food: <span id="food"></span>
+        <button onClick="earnWheat()">Gather Wheat</button>
+        Wheat: <span id="wheat"></span>
         <br>
     </div> 
-    <div>
-        Skins: <span id="skins"></span>
-        <br>
-    </div>
- 
-    <div>
-        <button onClick="craftTent()">Craft a tent</button>
-        Tents: <span id="tent"></span>
-        <br>
-    </div>
-    
-    <div>
-        <button onClick="createWorker()">Create a worker</button>
-        Workers: <span id="workers"></span>
-        <br>
-    </div>
-
-    <div id="farmers-buttons">
-        <div id="farmers-add-button">   
-            <button onClick="addFarmer()">+</button>
-            <br>
-        </div>
-
-        <div id="farmers-middle-button">   
-            <button>Farmers:</button>
-            <<span id="farmers"></span>>
-            <br>
-        </div> 
-
-        <div id="farmers-remove-button">   
-            <button onClick="removeFarmer()">-</button>
-            <br>
-        </div>
-    </div>     
+  
 </body>
-<script type="text/javascript" src="main.js"></script>
-<!-- <script type="text/javascript" src="save.js"></script> -->
 </html>
